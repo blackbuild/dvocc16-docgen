@@ -29,7 +29,7 @@ builder.html {
                 }
                 tr {
                     td("Maturity")
-                    td(project.status.maturity)
+                    td(project.status?.maturity ?: "unknown")
                 }
             }
         }
