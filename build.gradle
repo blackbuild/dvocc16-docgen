@@ -1,0 +1,28 @@
+group 'com.blackbuild.udom.docalot'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    dependencies {
+        compile 'com.blackbuild.udom.config:demo-configuration:1.0-SNAPSHOT'
+        compile 'com.blackbuild.devops.docalot:docalot:0.1.0-SNAPSHOT'
+        compile 'org.codehaus.groovy:groovy-all:2.4.6'
+        compile 'org.slf4j:slf4j-simple:1.7.18'
+        testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+            exclude module: 'groovy-all'
+        }
+    }
+}
+
+task docalot (dependsOn: 'classes', type: JavaExec) {
+    main = 'DocalotDemo'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+build.dependsOn docalot
